@@ -458,6 +458,32 @@
 </div>
 
 <script>
+  const audio = document.getElementById('weddingSong');
+const audioBtn = document.getElementById('audioControl');
+const pathIcon = document.getElementById('pathIcon');
+let isPlaying = false;
+
+audioBtn.addEventListener('click', () => {
+    if (isPlaying) {
+        audio.pause();
+        // تغيير شكل الأيقونة لتصبح "صامت"
+        pathIcon.setAttribute('d', 'M11 5L6 9H2v6h4l5 4V5zM15.5 9l3.5 3.5M19 9l-3.5 3.5'); 
+    } else {
+        audio.play();
+        // تغيير شكل الأيقونة لتصبح "يعمل"
+        pathIcon.setAttribute('d', 'M11 5L6 9H2v6h4l5 4V5zM19 9l-4 4M15 9l4 4');
+    }
+    isPlaying = !isPlaying;
+});
+
+// ملاحظة: لجعل الأغنية تعمل عند فتح الظرف أول مرة:
+s1.addEventListener('click', () => {
+    // ... كود فتح الظرف الموجود مسبقاً ...
+    
+    // تشغيل الصوت تلقائياً عند أول ضغطة
+    audio.play();
+    isPlaying = true;
+});
   const s1 = document.getElementById('s1');
   const s2 = document.getElementById('s2');
   const s3 = document.getElementById('s3');
@@ -468,12 +494,14 @@
 
   /* --- Open Envelope --- */
   s1.addEventListener('click', () => {
+    const audio = document.getElementById('weddingSong');
+    audio.play();
+
     s1.style.transition    = 'opacity 0.7s ease, transform 0.65s ease';
     s1.style.opacity       = '0';
     s1.style.transform     = 'scale(1.03)';
     s1.style.pointerEvents = 'none';
     
-    // إظهار عناصر الكارت الداخلي بتدرج
     Array.from(invEl.children).forEach((c, i) => {
       setTimeout(() => c.classList.add('in'), i * 120);
     });
@@ -515,5 +543,14 @@
     }, 400);
   });
 </script>
+  <!-- استبدل الرابط برابط الأغنية الخاصة بك (يفضل رابط MP3 مباشر) -->
+<audio id="weddingSong" loop>
+  <source src="YOUR_SONG_LINK_HERE.mp3" type="audio/mpeg">
+</audio>
+  <button id="audioControl" style="position:fixed; bottom:20px; right:20px; z-index:999; background:none; border:none; cursor:pointer; opacity:0.6;">
+  <svg id="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4A3E31" stroke-width="2">
+    <path id="pathIcon" d="M11 5L6 9H2v6h4l5 4V5zM19 9l-4 4M15 9l4 4"/>
+  </svg>
+</button>
 </body>
 </html>
