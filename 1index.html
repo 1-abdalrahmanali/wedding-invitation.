@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>M & H – Wedding Invitation</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Great+Vibes&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* لوحة ألوان راقية جداً (Classic Old Money) */
+    --env-bg: #F4F4F4;          /* لون الظرف الخارجي رمادي فاتح جداً/أبيض */
+    --card-bg: #FDFBF7;         /* لون الكارت الداخلي عاجي دافئ */
+    --text-dark: #4A3E31;       /* بني برونزي غامق للنصوص الأساسية */
+    --text-light: #7A6A58;      /* برونزي فاتح للنصوص الثانوية */
+    --accent-gold: #A89578;     /* ذهبي مطفأ للزخارف */
+  }
+
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    background: #E5E5E5; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: 'Playfair Display', serif;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 390px;
+    height: 780px;
+    position: relative;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.15), 0 10px 30px rgba(0,0,0,0.1);
+    background: var(--card-bg);
+  }
+
+  .screen {
+    position: absolute;
+    inset: 0;
+    background: var(--card-bg);
+  }
+
+  /* إطار داخلي بسيط لزيادة الفخامة */
+  .inner-frame {
+    position: absolute;
+    inset: 15px;
+    border: 1px solid rgba(168, 149, 120, 0.25);
+    pointer-events: none;
+    z-index: 10;
+  }
+
+  /* ===== SCREEN 1: ENVELOPE ===== */
+  #s1 {
+    z-index: 3;
+    cursor: pointer;
+    background: var(--env-bg);
+    transition: opacity 0.7s ease, transform 0.65s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* رسمة الظرف من الأعلى (مثل الصورة المرجعية الأولى) */
+  .env-flap {
+    width: 100%;
+    height: 380px;
+    background: #FFFFFF;
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05); /* ظل خفيف للظرف */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 100px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .flap-names {
+    font-size: 38px;
+    color: var(--text-dark);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 0.8;
+  }
+  .flap-names .script {
+    font-family: 'Great Vibes', cursive;
+    font-size: 32px;
+    color: var(--text-light);
+    margin: 8px 0;
+  }
+  .flap-date {
+    margin-top: 25px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    color: var(--text-dark);
+  }
+
+  .open-txt {
+    position: absolute;
+    bottom: 40px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    color: var(--text-light);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+  }
+
+  /* ===== SCREEN 2: MAIN INVITATION ===== */
+  #s2 {
+    z-index: 2;
+    overflow-y: auto;
+  }
+
+  .inv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100%;
+    padding: 50px 30px;
+    position: relative;
+  }
+
+  .inv > * {
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .inv > *.in {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Botanical SVG Accents (مثل الصورة المرجعية الثانية) */
+  .botanical {
+    position: absolute;
+    width: 140px;
+    height: auto;
+    opacity: 0.8;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .botanical-tl { top: 0; left: 0; }
+  .botanical-br { bottom: 0; right: 0; transform: rotate(180deg); }
+
+  .intro-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.25em;
+    color: var(--text-light);
+    line-height: 1.8;
+    text-align: center;
+    margin-bottom: 30px;
+    margin-top: 20px;
+    z-index: 2;
+  }
+
+  .main-names {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+    z-index: 2;
+  }
+  .main-names h1 {
+    font-size: 64px;
+    font-weight: 400;
+    color: var(--text-dark);
+    letter-spacing: 0.05em;
+    line-height: 1;
+  }
+  .main-names .and-script {
+    font-family: 'Great Vibes', cursive;
+    font-size: 42px;
+    color: var(--accent-gold);
+    margin: -5px 0;
+  }
+
+  .d-row {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+    z-index: 2;
+  }
+  .d-txt  { 
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px; 
+    font-weight: 400; 
+    letter-spacing: 0.2em; 
+    color: var(--text-dark); 
+  }
+
+  .wedding-msg {
+    font-size: 15px;
+    font-style: italic;
+    font-weight: 400;
+    color: var(--text-light);
+    text-align: center;
+    letter-spacing: 0.04em;
+    line-height: 1.6;
+    margin-bottom: 40px;
+    padding: 0 10px;
+    z-index: 2;
+  }
+
+  .chic-btn {
+    background: transparent;
+    color: var(--text-dark);
+    border: 1px solid var(--text-dark);
+    padding: 12px 30px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 2;
+  }
+  .chic-btn:hover { 
+    background: var(--text-dark); 
+    color: var(--card-bg); 
+  }
+
+  /* ===== SCREEN 3: DETAILS ===== */
+  #s3 {
+    z-index: 1;
+    overflow-y: auto;
+  }
+
+  .dets {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 55px 30px 28px;
+    position: relative;
+    min-height: 100%;
+  }
+
+  .dets > * {
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+  }
+  .dets > *.in {
+    opacity: 1;
+    transform: none;
+  }
+
+  .back-btn {
+    position: absolute;
+    top: 22px; left: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: var(--text-light);
+    letter-spacing: 0.1em;
+    padding: 4px 0;
+    transition: color 0.2s;
+    opacity: 0; transform: none;
+    z-index: 20;
+  }
+  .back-btn.in { opacity: 1; }
+  .back-btn:hover { color: var(--text-dark); }
+
+  .det-script {
+    font-family: 'Great Vibes', cursive;
+    font-size: 38px;
+    color: var(--accent-gold);
+    margin-bottom: 35px;
+    text-align: center;
+  }
+
+  .det-block {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+
+  .det-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    color: var(--text-light);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    text-align: center;
+  }
+  
+  .det-val {
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--text-dark);
+    letter-spacing: 0.05em;
+    line-height: 1.6;
+    text-align: center;
+  }
+  .det-val a {
+    text-decoration: none;
+    color: var(--text-dark);
+    border-bottom: 1px solid rgba(74, 62, 49, 0.3);
+    padding-bottom: 2px;
+    transition: opacity 0.3s;
+  }
+  .det-val a:hover {
+    opacity: 0.6;
+  }
+  .det-val.date-v {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    letter-spacing: 0.2em;
+  }
+
+  .hall-img {
+    width: 100%;
+    padding: 5px;
+    background: #FFF;
+    border: 1px solid rgba(168, 149, 120, 0.3);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    margin-top: 10px;
+  }
+  .hall-img img {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+    filter: sepia(0.2) contrast(0.9); /* لمسة فلتر كلاسيكية خفيفة للصورة */
+  }
+  .hall-cap {
+    font-size: 14px;
+    font-style: italic;
+    color: var(--text-light);
+    text-align: center;
+    margin-top: 16px;
+  }
+</style>
+</head>
+<body>
+<div class="card">
+
+  <!-- ===== ENVELOPE ===== -->
+  <div class="screen" id="s1">
+    <div class="env-flap">
+      <div class="flap-names">
+        M
+        <span class="script">and</span>
+        H
+      </div>
+      <div class="flap-date">19 . 07 . 2026</div>
+    </div>
+    
+    <div style="position:absolute; bottom:0; left:0; width:100%; height: 400px; background:linear-gradient(to top, rgba(0,0,0,0.03), transparent); pointer-events:none;"></div>
+    
+    <p class="open-txt">TAP TO OPEN</p>
+  </div>
+
+  <!-- ===== MAIN INVITATION ===== -->
+  <div class="screen" id="s2">
+    <div class="inner-frame"></div>
+    
+    <!-- Top Left Botanical -->
+    <svg class="botanical botanical-tl" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M10,10 Q60,30 90,90 Q120,150 160,180" stroke="var(--accent-gold)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+      <path d="M30,17 Q45,5 55,20 Q40,30 30,17Z" fill="var(--accent-gold)" opacity="0.3" stroke="var(--accent-gold)" stroke-width="1"/>
+      <path d="M50,25 Q70,10 80,30 Q60,45 50,25Z" fill="none" stroke="var(--accent-gold)" stroke-width="1"/>
+      <path d="M70,45 Q95,30 105,55 Q80,70 70,45Z" fill="var(--accent-gold)" opacity="0.2" stroke="var(--accent-gold)" stroke-width="1"/>
+      <path d="M90,75 Q115,65 125,90 Q100,105 90,75Z" fill="none" stroke="var(--accent-gold)" stroke-width="1"/>
+      <path d="M105,105 Q135,100 140,125 Q110,135 105,105Z" fill="var(--accent-gold)" opacity="0.4" stroke="var(--accent-gold)" stroke-width="1"/>
+    </svg>
+
+    <!-- Bottom Right Botanical -->
+    <svg class="botanical botanical-br" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M10,10 Q60,30 90,90 Q120,150 160,180" stroke="var(--accent-gold)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+      <path d="M30,17 Q45,5 55,20 Q40,30 30,17Z" fill="none" stroke="var(--accent-gold)" stroke-width="1"/>
+      <path d="M50,25 Q70,10 80,30 Q60,45 50,25Z" fill="var(--accent-gold)" opacity="0.3" stroke="var(--accent-gold)" stroke-width="1"/>
+      <path d="M70,45 Q95,30 105,55 Q80,70 70,45Z" fill="none" stroke="var(--accent-gold)" stroke-width="1"/>
+      <path d="M90,75 Q115,65 125,90 Q100,105 90,75Z" fill="var(--accent-gold)" opacity="0.2" stroke="var(--accent-gold)" stroke-width="1"/>
+      <path d="M105,105 Q135,100 140,125 Q110,135 105,105Z" fill="none" stroke="var(--accent-gold)" stroke-width="1"/>
+    </svg>
+
+    <div class="inv" id="invEl">
+      <p class="intro-text">PLEASE JOIN US FOR THE<br>WEDDING OF</p>
+      
+      <div class="main-names">
+        <h1>M</h1>
+        <span class="and-script">and</span>
+        <h1>H</h1>
+      </div>
+
+      <div class="d-row">
+        <span class="d-txt">19  ·  07  ·  2026</span>
+      </div>
+
+      <p class="wedding-msg">
+        We joyfully invite you to share in our happiness<br>
+        as we unite in marriage and begin our forever together.
+      </p>
+
+      <button class="chic-btn" id="detBtn">Invitation details →</button>
+    </div>
+  </div>
+
+  <!-- ===== DETAILS ===== -->
+  <div class="screen" id="s3">
+    <div class="inner-frame"></div>
+    <div class="dets" id="detsEl">
+      <button class="back-btn" id="backBtn">← BACK</button>
+      <p class="det-script">M & H</p>
+
+      <div class="det-block">
+        <p class="det-label">Date</p>
+        <p class="det-val date-v">JULY 19, 2026</p>
+      </div>
+
+      <div class="det-block">
+        <p class="det-label">Venue & Address</p>
+        <p class="det-val">
+          <a href="https://maps.google.com/maps?vet=10CAAQoqAOahcKEwj4ru-GqsKUAxUAAAAAHQAAAAAQEg..i&pvq=OhYweDA6MHhhNTViNDZlMDhlYTFjNzcy&fvr=1&cs=1&um=1&ie=UTF-8&fb=1&gl=eg&sa=X&ftid=0x14583fa904cc31d3:0xa55b46e08ea1c772" target="_blank">
+            AL ANDALUSIA, La perla
+          </a>
+          <br>
+          <span style="font-size: 13px; font-style: italic; opacity: 0.8; border:none;">Click for location</span>
+        </p>
+      </div>
+
+      <div class="det-block">
+        <p class="det-label">The Venue</p>
+        <div class="hall-img">
+          <img src="https://i.postimg.cc/prv27t4x/photo-5208965963733212660-y.jpg">        
+        </div>
+        <p class="hall-cap">We can't wait to celebrate with you.</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const s1 = document.getElementById('s1');
+  const s2 = document.getElementById('s2');
+  const s3 = document.getElementById('s3');
+  const invEl   = document.getElementById('invEl');
+  const detBtn  = document.getElementById('detBtn');
+  const backBtn = document.getElementById('backBtn');
+  const detsEl  = document.getElementById('detsEl');
+
+  /* --- Open Envelope --- */
+  s1.addEventListener('click', () => {
+    s1.style.transition    = 'opacity 0.7s ease, transform 0.65s ease';
+    s1.style.opacity       = '0';
+    s1.style.transform     = 'scale(1.03)';
+    s1.style.pointerEvents = 'none';
+    
+    // إظهار عناصر الكارت الداخلي بتدرج
+    Array.from(invEl.children).forEach((c, i) => {
+      setTimeout(() => c.classList.add('in'), i * 120);
+    });
+  });
+
+  /* --- Go to Details --- */
+  detBtn.addEventListener('click', () => {
+    s2.style.transition    = 'opacity 0.45s ease, transform 0.45s ease';
+    s2.style.opacity       = '0';
+    s2.style.transform     = 'translateX(-20px)';
+    s2.style.pointerEvents = 'none';
+    setTimeout(() => {
+      s2.style.display = 'none';
+      s3.style.zIndex  = '4';
+      Array.from(detsEl.children).forEach((c, i) => {
+        setTimeout(() => c.classList.add('in'), i * 100);
+      });
+    }, 450);
+  });
+
+  /* --- Back to Main --- */
+  backBtn.addEventListener('click', () => {
+    s3.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+    s3.style.opacity    = '0';
+    s3.style.transform  = 'translateX(20px)';
+    setTimeout(() => {
+      s3.style.opacity   = '1';
+      s3.style.transform = 'none';
+      s3.style.zIndex    = '1';
+      Array.from(detsEl.children).forEach(c => c.classList.remove('in'));
+      s2.style.display       = 'block';
+      
+      // Force reflow
+      void s2.offsetWidth;
+      
+      s2.style.opacity       = '1';
+      s2.style.transform     = 'none';
+      s2.style.pointerEvents = 'auto';
+    }, 400);
+  });
+</script>
+</body>
+</html>
