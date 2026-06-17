@@ -359,31 +359,34 @@
   .det-val { font-size: 17px; color: var(--text-dark); line-height: 1.5; }
   .det-val a { color: var(--text-dark); text-decoration: none; border-bottom: 1px solid rgba(74, 62, 49, 0.3); padding-bottom: 2px; }
 
-  /* صندوق الصورة الحقيقي والمنظم وبدون فيلتر قديم */
-  ./* صندوق الصورة بستايل الإطار الفاخر (Gallery Frame) */
+
+/* الإطار الفاخر الإجباري */
 .hall-frame {
-  width: 92%; /* تصغير العرض قليلاً لترك مسافة خارجية */
-  margin: 15px auto 0; /* التوسيط في المنتصف */
-  padding: 12px; /* المسافة البيضاء الداخلية (الباسبارتو) */
-  background: #FFFFFF; /* خلفية بيضاء نقية */
-  border: 1px solid rgba(168, 149, 120, 0.4); /* إطار ذهبي/بني رفيع وواضح */
-  box-shadow: 0 8px 20px rgba(0,0,0,0.06); /* ظل ناعم جداً للإطار */
+  width: 82% !important; /* صغرنا العرض عشان نسيب مسافة محترمة من اليمين والشمال */
+  margin: 10px auto 20px auto !important; /* توسيط الإطار */
+  padding: 12px !important; /* المساحة البيضاء حول الصورة */
+  background: #FFFFFF !important;
+  border: 1px solid rgba(168, 149, 120, 0.6) !important; /* لون الإطار واضح */
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1) !important; /* ظل يعطي إحساس البرواز البارز */
+  box-sizing: border-box !important;
+  position: relative !important;
+  z-index: 20 !important; /* عشان نضمن إن الصورة تظهر فوق الخطوط */
 }
 
 .hall-frame img {
-  width: 100%;
-  display: block;
-  object-fit: cover;
-  border: 1px solid rgba(0,0,0,0.05); /* تحديد ناعم جداً يفصل الصورة عن اللون الأبيض */
+  width: 100% !important;
+  height: 220px !important; /* تحديد طول ثابت يمنع الصورة من الخروج بره الشاشة */
+  object-fit: cover !important; /* بيخلي الصورة تملأ المكان من غير ما تتمط */
+  display: block !important;
 }
 
-/* ستايل الجملة الختامية الأنيقة */
+/* ستايل الجملة الختامية */
 .closing-msg {
   font-family: 'Playfair Display', serif;
   font-style: italic;
   font-size: 15px;
   color: var(--accent-gold);
-  margin-top: 20px;
+  margin-top: 5px;
   text-align: center;
 }
 
