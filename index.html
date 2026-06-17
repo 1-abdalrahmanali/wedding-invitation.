@@ -441,7 +441,7 @@
   @keyframes pulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
 
 
-#loader, #s1, #s2 {
+#loader, #s1, #s2, #s3 {
   display: flex !important;
   flex-direction: column !important;
   justify-content: center !important; /* توسيط عمودي مثالي في نص الشاشة */
@@ -463,37 +463,19 @@
   margin-top: 0 !important;
   margin-bottom: 25px !important; /* مسافة بسيطة تحت الشعار */
 }
+#s3 .monogram-center {
+  margin-top: 0 !important;
+  margin-bottom: 25px !important; /* مسافة بسيطة تحت الشعار */
+}
 
 /* 3. إلغاء أي مسافات علوية قديمة في الكونتنت الخاص بـ s2 */
 #s2 .inv-container {
   padding: 0 !important;
   justify-content: center !important;
 }
-/* ======================================================== */
-/* الحل النهائي للصفحة الأخيرة (صفحة التفاصيل) لتبدأ من الأعلى */
-/* ======================================================== */
-
-/* 1. إجبار الشاشة الأخيرة تبدأ من فوق خالص وتسمح بالسكرول */
-#s3 {
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: flex-start !important; /* السر هنا: ده اللي بيلغي التوسيط وبيسحبها لفوق */
-  align-items: center !important;
-  padding-top: 15px !important; /* مسافة علوية صغيرة جداً */
-  overflow-y: auto !important; /* ضمان استمرار تشغيل السكرول */
-}
-
-/* 2. تقليل المسافة اللي فوق كلمة Wedding Details مباشرة */
-#s3 .dets-container {
-  justify-content: flex-start !important;
-  padding-top: 10px !important; /* تقليل الفراغ لأقصى درجة */
-  margin-top: 0 !important;
-  height: max-content !important;
-}
-
-/* 3. تقليل المسافة فوق عنوان Wedding Details */
-#s3 .det-title {
-  margin-top: 10px !important;
+#s3 .inv-container {
+  padding: 0 !important;
+  justify-content: center !important;
 }
 </style>
 </head>
