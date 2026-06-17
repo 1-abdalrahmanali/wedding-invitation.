@@ -360,20 +360,32 @@
   .det-val a { color: var(--text-dark); text-decoration: none; border-bottom: 1px solid rgba(74, 62, 49, 0.3); padding-bottom: 2px; }
 
   /* صندوق الصورة الحقيقي والمنظم وبدون فيلتر قديم */
-  .hall-frame {
-    width: 100%;
-    padding: 4px;
-    background: #FFF;
-    border: 1px solid rgba(168, 149, 120, 0.25);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-    margin-top: 5px;
-  }
-  .hall-frame img {
-    width: 100%;
-    display: block;
-    object-fit: cover;
-    filter: none; /* إزالة الـ sepia بناءً على طلبك العبقري لجمال الصورة الطبيعي */
-  }
+  ./* صندوق الصورة بستايل الإطار الفاخر (Gallery Frame) */
+.hall-frame {
+  width: 92%; /* تصغير العرض قليلاً لترك مسافة خارجية */
+  margin: 15px auto 0; /* التوسيط في المنتصف */
+  padding: 12px; /* المسافة البيضاء الداخلية (الباسبارتو) */
+  background: #FFFFFF; /* خلفية بيضاء نقية */
+  border: 1px solid rgba(168, 149, 120, 0.4); /* إطار ذهبي/بني رفيع وواضح */
+  box-shadow: 0 8px 20px rgba(0,0,0,0.06); /* ظل ناعم جداً للإطار */
+}
+
+.hall-frame img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+  border: 1px solid rgba(0,0,0,0.05); /* تحديد ناعم جداً يفصل الصورة عن اللون الأبيض */
+}
+
+/* ستايل الجملة الختامية الأنيقة */
+.closing-msg {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 15px;
+  color: var(--accent-gold);
+  margin-top: 20px;
+  text-align: center;
+}
 
   /* ===== 5. Decorative Floating Botanicals ===== */
   .botanical {
@@ -439,7 +451,7 @@
         </div>
         <div class="env-card-preview">
           <div class="preview-names">M & H</div>
-          <div style="font-family:'Montserrat'; font-size:9px; letter-spacing:2px; margin-top:10px; color:var(--accent-gold);">19.07.2026</div>
+          <div style="font-family:'Montserrat'; font-size:9px; letter-spacing:2px; margin-top:10px; color:var(--accent-gold);">24. 08.2026</div>
         </div>
         <div class="env-pocket"></div>
         <div class="env-pocket-front"></div>
@@ -472,8 +484,8 @@
         <div class="and-divider">and</div>
         <h1>H</h1>
       </div>
-      <div class="date-row reveal-item">19  ·  07  ·  2026</div>
-      <p class="wedding-msg reveal-item">We joyfully invite you to share in our happiness as we unite in marriage and begin our forever together.</p>
+      <div class="date-row reveal-item">24  ·  08  ·  2026</div>
+      <p class="wedding-msg reveal-item">We joyfully invite you to share in our happiness as we unite in engagment and begin our forever together.</p>
       <button class="chic-btn reveal-item" id="toDetails">Invitation details →</button>
     </div>
   </div>
@@ -486,21 +498,24 @@
 
       <div class="det-block">
         <p class="det-label">Date & Time</p>
-        <p class="det-val" style="font-family:'Montserrat'; font-size:14px; font-weight:500; letter-spacing:1px;">SUNDAY, JULY 19, 2026</p>
-        <p class="det-val" style="font-size:14px; margin-top:4px; opacity:0.8;">At 4:00 PM in the Afternoon</p>
+        <p class="det-val" style="font-family:'Montserrat'; font-size:14px; font-weight:500; letter-spacing:1px;">August 24, 2026</p>
+        <p class="det-val" style="font-size:14px; margin-top:4px; opacity:0.8;">At 7:00 PM at night </p>
       </div>
 
       <div class="det-block">
-        <p class="det-label">Venue Location</p>
-        <p class="det-val"><a href="https://maps.google.com/maps?vet=10CAAQoqAOahcKEwj4ru-GqsKUAxUAAAAAHQAAAAAQEg..i&pvq=OhYweDA6MHhhNTViNDZlMDhlYTFjNzcy&fvr=1&cs=1&um=1&ie=UTF-8&fb=1&gl=eg&sa=X&ftid=0x14583fa904cc31d3:0xa55b46e08ea1c772" target="_blank">AL ANDALUSIA, La Perla</a></p>
-        <p class="det-val" style="font-size:12px; font-style:italic; opacity:0.6; margin-top:2px;">Tap venue name for maps navigation</p>
+        <p class="det-label">Venue & Address</p>
+        <p class="det-val"><a href="https://maps.app.goo.gl/Q9jUYrX5sY3dGpYS6" target="_blank">Omar El Khayam Palace, Giza</a></p>
+        <p class="det-val" style="font-size:12px; font-style:italic; opacity:0.6; margin-top:2px;">Click for location</p>
       </div>
 
-      <div class="det-block" style="margin-bottom:10px;">
-        <p class="det-label">The Ballroom</p>
-        <div class="hall-frame">
-          <img src="https://i.postimg.cc/prv27t4x/photo-5208965963733212660-y.jpg" alt="Al Andalusia Ballroom">
-        </div>
+      <div class="det-block" style="margin-bottom:20px;">
+  <p class="det-label">The Venue</p>
+  <div class="hall-frame">
+    <img src="https://i.postimg.cc/prv27t4x/photo-5208965963733212660-y.jpg" alt="Al Andalusia Ballroom">
+  </div>
+  <!-- الجملة الختامية أسفل الإطار -->
+  <p class="closing-msg">We can't wait to celebrate with you.</p>
+</div>
       </div>
     </div>
   </div>
