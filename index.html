@@ -425,16 +425,29 @@
 
   /* ===== 6. Premium Embedded Audio Control ===== */
   #audioControl {
-    position: absolute;
-    bottom: 25px; right: 25px;
-    z-index: 90;
-    background: none;
-    border: none;
-    cursor: pointer;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.5s, visibility 0.5s;
-  }
+  position: fixed !important; /* ميزته إنه بيفضل ثابت في مكانه بالنسبة للشاشة */
+  bottom: 25px !important;    /* مسافة مناسبة جداً من تحت فوق الزراير الأساسية للموبايل */
+  right: 25px !important;     /* مسافة من اليمين */
+  width: 40px !important;     /* تكبير مساحة الضغط شوية عشان صوابع المستخدم على الموبايل */
+  height: 40px !important;
+  background: rgba(255, 255, 255, 0.8) !important; /* خلفية خفيفة عشان يظهر بوضوح فوق أي صورة */
+  border: 1px solid var(--accent-gold) !important;  /* إطار رفيع متناسق مع الديزاين */
+  border-radius: 50% !important;  /* يخليه دائري شيك */
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  z-index: 9999 !important;   /* رقم فلكي عشان يضمن إنه يطفو فوق أي برواز أو كتابة أو شاشة */
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* ظل خفيف عشان يديله عمق */
+  transition: all 0.3s ease;
+}
+
+/* تظبيط حجم الأيقونة جوا الزرار */
+#audioControl svg {
+  width: 20px !important;
+  height: 20px !important;
+  stroke: var(--text-dark) !important;
+}
   #audioControl.visible { opacity: 0.6; visibility: visible; }
   #audioControl:hover { opacity: 1; }
 
