@@ -64,6 +64,14 @@
     opacity: 1;
     visibility: visible;
   }
+  /* كلاس مساعد لتوسيط محتوى الشاشة الرئيسية عمودياً وأفقياً */
+.center-content {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  min-height: 100% !important;
+}
 
   .inner-frame {
   position: sticky; /* بيخليه يلزق ويفضل ثابت مع السكرول */
@@ -478,7 +486,7 @@
     </div>
   </div>
 
-  <div class="screen" id="s2">
+  <div class="screen center-content" id="s2">
     <div class="inner-frame"></div>
     <svg class="botanical botanical-tl" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M10,10 Q60,30 90,90 Q120,150 160,180" stroke="var(--accent-gold)" stroke-width="1.2" fill="none"/>
@@ -508,7 +516,7 @@
     </div>
   </div>
 
-  <div class="screen" id="s3">
+  <div class="screen center-content" id="s3">
     <div class="inner-frame"></div>
     <div class="dets-container">
       <button class="back-btn" id="toMain">← BACK</button>
