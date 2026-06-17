@@ -64,14 +64,6 @@
     opacity: 1;
     visibility: visible;
   }
-  /* كلاس مساعد لتوسيط محتوى الشاشة الرئيسية عمودياً وأفقياً */
-.center-content {
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: center !important;
-  align-items: center !important;
-  min-height: 100% !important;
-}
 
   .inner-frame {
   position: sticky; /* بيخليه يلزق ويفضل ثابت مع السكرول */
@@ -447,6 +439,36 @@
   #audioControl:hover { opacity: 1; }
 
   @keyframes pulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
+
+
+#loader, #s1, #s2 {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important; /* توسيط عمودي مثالي في نص الشاشة */
+  align-items: center !important;     /* توسيط أفقي مثالي */
+  height: 100% !important;
+  width: 100% !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  padding: 0 !important;             /* إلغاء أي مسافات داخلية قديمة */
+  margin: 0 !important;              /* إلغاء أي مسافات خارجية قديمة */
+  overflow: hidden !important;        /* ممنوع السكرول في الشاشات دي */
+}
+
+/* 2. تصغير المساحة تحت اللوجو في الشاشات دي لضمان التوسط المثالي */
+#loader .monogram-loader, 
+#s1 .monogram-seal,
+#s2 .monogram-center {
+  margin-top: 0 !important;
+  margin-bottom: 25px !important; /* مسافة بسيطة تحت الشعار */
+}
+
+/* 3. إلغاء أي مسافات علوية قديمة في الكونتنت الخاص بـ s2 */
+#s2 .inv-container {
+  padding: 0 !important;
+  justify-content: center !important;
+}
 </style>
 </head>
 <body>
@@ -486,7 +508,7 @@
     </div>
   </div>
 
-  <div class="screen center-content" id="s2">
+  <div class="screen" id="s2">
     <div class="inner-frame"></div>
     <svg class="botanical botanical-tl" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M10,10 Q60,30 90,90 Q120,150 160,180" stroke="var(--accent-gold)" stroke-width="1.2" fill="none"/>
@@ -516,7 +538,7 @@
     </div>
   </div>
 
-  <div class="screen center-content" id="s3">
+  <div class="screen" id="s3">
     <div class="inner-frame"></div>
     <div class="dets-container">
       <button class="back-btn" id="toMain">← BACK</button>
