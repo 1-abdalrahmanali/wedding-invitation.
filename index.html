@@ -42,14 +42,23 @@
   }
 
   /* نظام الشاشات النظيف والمستقر */
-  .screen {
-    position: absolute;
-    inset: 0;
-    background: var(--card-bg);
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.8s;
-  }
+ /* نظام الشاشات المرن اللي بيسمح بالسكرول */
+.screen {
+  position: absolute;
+  inset: 0;
+  background: var(--card-bg);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.8s;
+  overflow-y: auto; /* السر هنا: ده اللي بيشغل السكرول بالطول */
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+/* إخفاء شريط السكرول الجانبي عشان نحافظ على شياكة الكارت */
+.screen::-webkit-scrollbar {
+  display: none;
+}
 
   .screen.active {
     opacity: 1;
@@ -57,12 +66,15 @@
   }
 
   .inner-frame {
-    position: absolute;
-    inset: 15px;
-    border: 1px solid rgba(168, 149, 120, 0.2);
-    pointer-events: none;
-    z-index: 10;
-  }
+  position: sticky; /* بيخليه يلزق ويفضل ثابت مع السكرول */
+  top: 15px; 
+  left: 15px;
+  width: calc(100% - 30px);
+  height: calc(100% - 30px);
+  border: 1px solid rgba(168, 149, 120, 0.2);
+  pointer-events: none;
+  z-index: 10;
+}
 
   /* ===== 1. Premium Loader Screen ===== */
   #loader {
@@ -319,12 +331,13 @@
 
   /* ===== 4. Details View ===== */
   .dets-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 60px 25px 30px;
-    min-height: 100%;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* بيجبر الكلام يبدأ من فوق طبيعي بدل ما يتسنتر */
+  padding: 55px 20px 40px; /* قللنا المسافة العلوية عشان نلغي الفراغ الكبير */
+  min-height: max-content; /* بيسمح للصفحة تطول براحتها مع السكرول */
+}
 
   .back-btn {
     position: absolute;
@@ -341,11 +354,12 @@
   }
 
   .det-title {
-    font-family: 'Great Vibes', cursive;
-    font-size: 36px;
-    color: var(--accent-gold);
-    margin-bottom: 40px;
-  }
+  font-family: 'Great Vibes', cursive;
+  font-size: 38px;
+  color: var(--accent-gold);
+  margin-top: 5px; /* رفعنا الكلمة لفوق عشان تقرب من زرار الرجوع */
+  margin-bottom: 35px;
+}
 
   .det-block { width: 100%; margin-bottom: 28px; text-align: center; }
   .det-label {
@@ -437,7 +451,7 @@
     </svg>
   </button>
 
-<audio id="weddingSong" loop preload="auto">
+<audio id="weddingSong" preload="auto">
   <source src="song.mp3" type="audio/mpeg">
 </audio>
 
