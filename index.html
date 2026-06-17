@@ -469,6 +469,32 @@
   padding: 0 !important;
   justify-content: center !important;
 }
+/* ======================================================== */
+/* الحل النهائي للصفحة الأخيرة (صفحة التفاصيل) لتبدأ من الأعلى */
+/* ======================================================== */
+
+/* 1. إجبار الشاشة الأخيرة تبدأ من فوق خالص وتسمح بالسكرول */
+#s3 {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important; /* السر هنا: ده اللي بيلغي التوسيط وبيسحبها لفوق */
+  align-items: center !important;
+  padding-top: 15px !important; /* مسافة علوية صغيرة جداً */
+  overflow-y: auto !important; /* ضمان استمرار تشغيل السكرول */
+}
+
+/* 2. تقليل المسافة اللي فوق كلمة Wedding Details مباشرة */
+#s3 .dets-container {
+  justify-content: flex-start !important;
+  padding-top: 10px !important; /* تقليل الفراغ لأقصى درجة */
+  margin-top: 0 !important;
+  height: max-content !important;
+}
+
+/* 3. تقليل المسافة فوق عنوان Wedding Details */
+#s3 .det-title {
+  margin-top: 10px !important;
+}
 </style>
 </head>
 <body>
@@ -487,7 +513,7 @@
 
   <div class="screen active" id="loader">
     <div class="monogram-loader">
-      <span>MH</span>
+      <span>YH</span>
     </div>
   </div>
 
@@ -495,10 +521,10 @@
     <div class="envelope-wrapper" id="envWrapper">
       <div class="env-box">
         <div class="env-flap">
-          <div class="monogram-seal">MH</div>
+          <div class="monogram-seal">YH</div>
         </div>
         <div class="env-card-preview">
-          <div class="preview-names">M & H</div>
+          <div class="preview-names">Y & H</div>
           <div style="font-family:'Montserrat'; font-size:9px; letter-spacing:2px; margin-top:10px; color:var(--accent-gold);">24. 08.2026</div>
         </div>
         <div class="env-pocket"></div>
@@ -524,7 +550,7 @@
 
     <div class="inv-container">
       <div class="monogram-center reveal-item">
-        <span>MH</span>
+        <span>YH</span>
       </div>
       <p class="intro-text reveal-item">PLEASE JOIN US FOR THE<br>WEDDING OF</p>
       <div class="main-names reveal-item">
