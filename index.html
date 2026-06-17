@@ -424,29 +424,38 @@
   }
 
   /* ===== 6. Premium Embedded Audio Control ===== */
-  #audioControl {
-  position: fixed !important; /* ميزته إنه بيفضل ثابت في مكانه بالنسبة للشاشة */
-  bottom: 25px !important;    /* مسافة مناسبة جداً من تحت فوق الزراير الأساسية للموبايل */
-  right: 25px !important;     /* مسافة من اليمين */
-  width: 40px !important;     /* تكبير مساحة الضغط شوية عشان صوابع المستخدم على الموبايل */
-  height: 40px !important;
-  background: rgba(255, 255, 255, 0.8) !important; /* خلفية خفيفة عشان يظهر بوضوح فوق أي صورة */
-  border: 1px solid var(--accent-gold) !important;  /* إطار رفيع متناسق مع الديزاين */
-  border-radius: 50% !important;  /* يخليه دائري شيك */
+ #audioControl {
+  position: fixed !important;
+  /* هنخليه يظهر فوق خالص على اليمين عشان نضمن إن مفيش أي حاجة تلمسه أو تغطيه */
+  top: 20px !important; 
+  right: 20px !important;
+  
+  /* الأبعاد والخلفية */
+  width: 45px !important;
+  height: 45px !important;
+  background: rgba(255, 255, 255, 0.9) !important; /* خلفية بيضاء واضحة جداً */
+  border: 2px solid #b3925c !important; /* لون الجولد الفخم بتاع ديزاينك */
+  border-radius: 50% !important;
+  
+  /* التوسيط */
   display: flex !important;
   justify-content: center !important;
   align-items: center !important;
-  z-index: 9999 !important;   /* رقم فلكي عشان يضمن إنه يطفو فوق أي برواز أو كتابة أو شاشة */
-  cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* ظل خفيف عشان يديله عمق */
-  transition: all 0.3s ease;
+  
+  /* القوة المطلقة */
+  z-index: 999999 !important; /* زودنا عدد التسعات عشان يكسر أي حاجة وراه */
+  cursor: pointer !important;
+  
+  /* تأثيرات بصرية عشان يبان إنه زرار حقيقي */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
 }
 
-/* تظبيط حجم الأيقونة جوا الزرار */
-#audioControl svg {
-  width: 20px !important;
-  height: 20px !important;
-  stroke: var(--text-dark) !important;
+/* تظبيط شكل ولون الأيقونة جواه */
+#audioControl svg, #audioControl i {
+  width: 22px !important;
+  height: 22px !important;
+  color: #b3925c !important; /* اللون الجولد */
+  fill: #b3925c !important;
 }
   #audioControl.visible { opacity: 0.6; visibility: visible; }
   #audioControl:hover { opacity: 1; }
